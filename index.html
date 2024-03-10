@@ -1,81 +1,73 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Te amo Martu &lt;3</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: pink;
-            /* Fondo rosa */
-            overflow: hidden;
-        }
-
-        #container {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-        }
-
-        #flowerContainer {
-            position: absolute;
-            bottom: 50%;
-            /* Centrar verticalmente el contenedor de la flor */
-            left: 50%;
-            transform: translate(-50%, -50%);
-            /* Centrar horizontalmente el contenedor de la flor */
-        }
-
-        #flower {
-            width: 100px;
-            /* Ancho de la flor */
-            height: auto;
-            /* Altura ajustada automáticamente para mantener la proporción */
-            animation: moveFlower 5s ease-in-out infinite alternate;
-            /* Animación de la flor */
-        }
-
-        @keyframes moveFlower {
-            from {
-                transform: translateX(-50%);
-            }
-
-            to {
-                transform: translateX(50%);
-            }
-        }
-
-        #message {
-            text-align: center;
-            position: absolute;
-            bottom: 350px;
-            /* Ajuste de la distancia entre el texto y la flor */
-            width: 100%;
-            font-size: 20px;
-        }
-    </style>
+    <title>Carta Martu</title>
+    <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
-    <div id="container">
-        <div id="flowerContainer">
-            <img id="flower" src="flower.png" alt="Flor en maceta">
-            <!-- Cambia el src por la URL de la imagen de tu flor -->
+    <div class="envlope-wrapper">
+        <div id="envelope" class="close">
+            <div class="front flap"></div>
+            <div class="front pocket"></div>
+            <div class="letter">
+                <div class="words line1">
+                </div>
+                <div class="words line2">
+                </div>
+                <div class="words line3"></div>
+                <div class="words line4"></div>
+            </div>
+            <div class="hearts">
+                <div class="heart a1"></div>
+                <div class="heart a2"></div>
+                <div class="heart a3"></div>
+            </div>
         </div>
-        <p id="message">te amo hasta la luna ida y vuelta martu &lt;3</p>
-        <audio id="audio" controls>
-            <source src="song.mp3" type="audio/mpeg">
-            Tu navegador no soporta el elemento de audio.
-        </audio>
     </div>
+    <div class="reset">
+        <button id="open">Abrir</button>
+        <button id="reset">Cerrar</button>
+        <button id="redirigir">Ir A La Carta</button>
+    </div>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+    <script src="./script.js"></script>
+
     <script>
-        window.onload = function () {
-            var audio = document.getElementById('audio');
-            audio.play();
-        };
+        $(document).ready(function () {
+            var envelope = $('#envelope');
+            var btn_open = $("#open");
+            var btn_reset = $("#reset");
+
+            envelope.click(function () {
+                open();
+            });
+            btn_open.click(function () {
+                open();
+            });
+            btn_reset.click(function () {
+                close();
+            });
+
+            // Agrega el evento click al botón "Ir a La Carta"
+            $("#redirigir").click(function () {
+                // Redirige a la página especificada
+                window.location.href = "index2.html";
+            });
+
+            function open() {
+                envelope.addClass("open")
+                    .removeClass("close");
+            }
+            function close() {
+                envelope.addClass("close")
+                    .removeClass("open");
+            }
+
+        });
     </script>
 </body>
 
